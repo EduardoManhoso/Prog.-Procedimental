@@ -1,0 +1,594 @@
+// Exercício 01
+#include <stdio.h>
+
+int dobro(int num);
+
+main(){
+    int valor;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &valor);
+    printf("O dobro de %d e %d.", valor, dobro(valor));
+}
+
+int dobro(int num){
+    return num * 2;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 02
+#include <stdio.h>
+
+void data(int x);
+
+main(){
+    int dia, mes, ano;
+    printf("Digite a data (xx/xx/xxxx): ");
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+    printf("%d de ", dia);
+    data(mes);
+    printf(" de %d", ano);
+}
+
+void data(int x){
+    switch(x){
+        case 1:
+            printf("janeiro");
+            break;
+        case 2:
+            printf("fevereiro");
+            break;
+        case 3:
+            printf("marco");
+            break;
+        case 4:
+            printf("abril");
+            break;
+        case 5:
+            printf("maio");
+            break;
+        case 6:
+            printf("junho");
+            break;
+        case 7:
+            printf("julho");
+            break;
+        case 8:
+            printf("agosto");
+            break;
+        case 9:
+            printf("setembro");
+            break;
+        case 10:
+            printf("outubro");
+            break;
+        case 11:
+            printf("novembro");
+            break;
+        case 12:
+            printf("dezembro");
+            break;
+    }
+    return;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 03
+#include <stdio.h>
+
+int numero(int x);
+
+main(){
+    int num;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &num);
+    printf("positivo = 1;  negativo = -1;  nulo = 0\n");
+    printf("O resultado e %d.", numero(num));
+}
+
+int numero(int x){
+    if (x > 0){
+        return 1;
+    }
+    else if (x < 0){
+        return -1;
+    }
+    else{
+        return 0;
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 04
+#include <stdio.h>
+#include <math.h>
+
+void quad_per(int x);
+
+main(){
+    int num;
+    printf("Digite um numero inteiro positivo: ");
+    scanf("%d", &num);
+    quad_per(num);
+}
+
+void quad_per(int x){
+    double raiz;
+    raiz = sqrt(x);
+    if((raiz - (int)raiz) > 0){
+        printf("Nao e um quadrado perfeito.");
+    }else{
+        printf("E um quadrado perfeito.");
+    }
+    return;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 05
+#include <stdio.h>
+#include <math.h>
+
+double pi = 3.14159;
+
+double volume_esf(double x);
+
+main(){
+    double raio;
+    printf("Digite o raio da esfera: ");
+    scanf("%lf", &raio);
+    printf("O volume da esfera e de %.3lf.", volume_esf(raio));
+}
+
+double volume_esf(double x){
+    return (4.0 / 3.0) * pi * pow(x, 3);
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 06
+#include <stdio.h>
+
+int tempo(int h, int m, int s);
+
+main(){
+    int horas, minutos, segundos;
+    printf("Digite o horario(xx:xx:xx): ");
+    scanf("%d:%d:%d", &horas, &minutos, &segundos);
+    printf("O horario convetidos para segundos e %ld.", tempo(horas, minutos, segundos));
+}
+
+int tempo(int h, int m, int s){
+    return ((h * 3600) + (m * 60) + s);
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 07
+#include <stdio.h>
+
+double temperatura(double c);
+
+main(){
+    double celsius;
+    printf("Digite a data em celsius: ");
+    scanf("%lf", &celsius);
+    printf("A temperatura em Fahrenheit e %.2lf.", temperatura(celsius));
+}
+
+double temperatura(double c){
+    return c * (9.0 / 5.0) + 32;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 08
+#include <stdio.h>
+#include <math.h>
+
+double hipotenusa(int a, int b);
+
+main(){
+    int cat1, cat2;
+    printf("Digite os catetos: ");
+    scanf("%d %d", &cat1, &cat2);
+    printf("A hipotenusa vale %.2lf.", hipotenusa(cat1, cat2));
+}
+
+double hipotenusa(int a, int b){
+    return sqrt(pow(a, 2) + pow(b, 2));
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 09
+#include <stdio.h>
+#include <math.h>
+
+double pi = 3.141592;
+
+double volume_cil(double altura, double raio);
+
+main(){
+    double altura, raio;
+    printf("Digite a altura do cilindro: ");
+    scanf("%lf", &altura);
+    printf("Digite o raio da base: ");
+    scanf("%lf", &raio);
+    printf("O vlome do cilindro e %.2lf", volume_cil(altura, raio));
+}
+
+double volume_cil(double altura, double raio){
+    return pi * pow(raio, 2) * altura;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 10
+#include <stdio.h>
+
+int maior(int num1, int num2);
+
+main(){
+    int num1, num2;
+    printf("Digite dois numeros inteiros: ");
+    scanf("%d %d", &num1, &num2);
+    printf("O numero maior e %d.", maior(num1, num2));
+}
+
+int maior(int num1, int num2){
+    if(num1 > num2)
+        return num1;
+    else
+        return num2;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 11
+#include <stdio.h>
+
+double media(float nota1, float nota2, float nota3, char letra);
+
+main(){
+    float nota1, nota2, nota3;
+    char letra;
+    printf("Digite a nota do aluno: ");
+    scanf("%f %f %f", &nota1, &nota2, &nota3);
+    printf("Qual media calcular? (P - ponderada, A - aritimetica): ");
+    scanf(" %c", &letra);
+    printf("A media do aluno foi %.2lf", media(nota1, nota2, nota3, letra));
+}
+
+double media(float nota1, float nota2, float nota3, char letra){
+    if(letra == 'A' || letra == 'a'){
+        return (nota1 + nota2 + nota3) / 3.0; 
+    }else if (letra == 'P' || letra == 'p'){
+        return ((nota1 * 5.0) + (nota2 * 3.0) + (nota3 * 2.0)) / 10.0;
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 12
+#include <stdio.h>
+#include <math.h>
+
+int soma_alg(int num);
+
+main()
+{
+    int num;
+    printf("Digite um numero maior que zero: ");
+    scanf("%d", &num);
+    if(num > 0)
+        printf("A soma de todos seus algarismos e %d.", soma_alg(num));
+    else 
+        printf("Numero invalido.");
+}
+
+int soma_alg(int num)
+{
+    int quant, valor = num, soma = 0, p, casa;
+    while (valor != 0)
+    {
+        valor = valor / 10;
+        quant++;
+    }
+    for (quant; quant >= 0; quant--)
+    {
+        p = pow(10, quant);
+        casa = num / p;
+        num = num % p;
+        soma += casa;
+    }
+    return soma;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 13
+#include <stdio.h>
+
+float operacoes(float num1, float num2, char simbolo);
+
+main(){
+    float num1, num2;
+    char simbolo;
+    printf("Digite dois numeros: ");
+    scanf("%f %f", &num1, &num2);
+    printf("Digite o simbulo da operacao: ");
+    scanf(" %c", &simbolo);
+    if(simbolo == '+' || simbolo == '-' || simbolo == '*' || simbolo =='/'){
+        printf("%.2f %c %.2f = %.2f", num1, simbolo, num2, operacoes(num1, num2, simbolo));
+    }else{
+        printf("Simbolo invalido.");
+    }
+}
+
+float operacoes(float num1, float num2, char simbolo){
+    switch(simbolo){
+        case '+':
+            return num1 + num2;
+            break;
+        case '-':
+            return num1 - num2;
+            break;
+        case '*':
+            return num1 * num2;
+            break;
+        case '/':
+            return num1 / num2;
+            break;
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 14
+# include <stdio.h>
+
+void consumo(float distancia, float gasolina);
+
+main(){
+    float gasolina, distancia;
+    printf("Digite a distancia em Km: ");
+    scanf("%f", &distancia);
+    printf("Digite o consumo de gasolina em litros: ");
+    scanf("%f", &gasolina);
+    consumo(distancia, gasolina);
+}
+
+void consumo(float distancia, float gasolina){
+    double km_l;
+    km_l = distancia / gasolina;
+    if(km_l < 8.0)
+        printf("Venda o carro!");
+    else if(km_l >= 8.0 && km_l <= 14)
+        printf("Economico!");
+    else 
+        printf("Super economico!");
+	return;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 15
+#include <stdio.h>
+
+int forma_tri(int lado1, int lado2, int lado3);
+
+void tipo_tri(int lado1, int lado2, int lado3);
+
+main(){
+    int lado1, lado2, lado3;
+    printf("Digite os 3 lados do triangulo: ");
+    scanf("%d %d %d", &lado1, &lado2, &lado3);
+    if(lado1 > 0 && lado2 > 0 && lado3 > 0){
+        if(forma_tri(lado1, lado2, lado3)){
+            tipo_tri(lado1, lado2, lado3);
+        }else{
+            printf("Os lados nao formam um triangulo.");
+        }
+    }else{
+        printf("Numero(s) invalidos.");
+    }
+}
+
+int forma_tri(int lado1, int lado2, int lado3){
+    if(lado1 < (lado2 + lado3) && lado2 < (lado1 + lado3) && lado3 < (lado1 + lado2))
+        return 1;
+    else 
+        return 0;
+}
+
+void tipo_tri(int lado1, int lado2, int lado3){
+    if(lado1 == lado2 && lado2 == lado3)
+        printf("Os lados sao validos e formam um triangulo equilatero.");
+    else if(lado1 == lado2 || lado2 == lado3 || lado3 == lado1)
+        printf("Os lados sao validos e formam um triangulo isoceles.");
+    else
+        printf("Os lados sao validos e formam um triangulo escaleno.");
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 16
+#include <stdio.h>
+
+void desenha_linha(int quant);
+
+main(){
+    int quant;
+    printf("Digite a quantidade de \'=\' serao mostrados: ");
+    scanf("%d", &quant);
+    desenha_linha(quant);
+}
+
+void desenha_linha(int quant){
+    for(quant; quant > 0; quant--)
+        printf("=");
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 17
+#include <stdio.h>
+
+int inteiros_entre(int num1, int num2);
+
+main(){
+    int num1, num2;
+    printf("Digite dois numeros inteiros: ");
+    scanf("%d %d", &num1, &num2);
+    if(num1 >= 0 && num2 >= 0){
+        if(num1 > num2){
+            printf("Existem %d numeros entre %d e %d.", inteiros_entre(num1, num2), num2, num1);
+        }else{
+            printf("Existem %d numeros entre %d e %d.", inteiros_entre(num2, num1), num1, num2);
+        }
+    }else{
+        printf("Numeros invalidos.");
+    }
+}
+
+int inteiros_entre(int num1, int num2){
+    int quant = 0;
+    num2 += 1;
+    for(num2; num2 < num1; num2++)
+        quant++;
+    return quant;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 18
+#include <stdio.h>
+
+int potencia(int x, int z);
+
+main(){
+    int x, z;
+    printf("Digite o valor da base: ");
+    scanf("%d", &x);
+    printf("Digite o valor da potencia: ");
+    scanf("%d", &z);
+    printf("O valor de %d^%d e iqual a %d", x, z, potencia(x, z));
+}
+
+int potencia(int x, int z){
+    int p = x;
+    for(int i = 2; i <= z; i++){
+        p *= x;
+    }
+    return p;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 19
+#include <stdio.h>
+
+int fatorial(int num);
+
+main(){
+    int num;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &num);
+    if(num >= 0){
+        printf("%d! = %d", num, fatorial(num));
+    }else{
+        printf("Numero invalido.");
+    }
+}
+
+int fatorial(int num){
+    if(num == 0){
+        return 1;
+    }else{
+        for(int i = num - 1; i > 0; i--)
+            num = num * i;
+        return num;
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 20
+#include <stdio.h>
+
+int primos(int num);
+
+main(){
+    int num;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &num);
+    printf("O numero de primos abaixo de %d e %d", num, primos(num));
+}
+
+int primos(int num){
+    int j, k, i, primo = 0, control = 1;
+    for(j = 2; j < num; j++){
+        control = 1;
+        if(j == 2 || j == 3){
+            primo++;
+        }else if(j % 2 == 0 || j % 3 == 0 || j % 5 == 0 || j % 7 == 0){
+            control = 0;
+        }else{
+            k = j / 2;
+            for(i = 3; i <= k; i+=2){
+                    if(j % i == 0){
+                    control = 0;
+                    break;
+                }
+            }
+        }
+        if(control){
+            primo++;
+        }
+    }
+    return primo;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 21
+#include <stdio.h>
+
+void linha(int num);
+
+main(){
+    int num;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &num);
+    linha(num);
+}
+
+void linha(int num){
+    for(int i = 1; i <= 5; i++){
+        for(int j = 1; j <= i; j++){
+            putchar('!');
+        }
+        putchar('\n');
+    }
+    return;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 23
+#include <stdio.h>
+
+void triangulo(int num);
+
+main(){
+    int num;
+    printf("Digite a altura do triangulo: ");
+    scanf("%d", &num);
+    triangulo(num);
+}
+
+void triangulo(int num){
+    int i, j;
+    for(i = 1; i <= num; i++){
+        for(j = 1; j <= i; j++){
+            putchar('*');
+        }
+        putchar('\n');
+    }
+    for (i = num - 1; i > 0; i--){
+        for (j = i; j > 0; j--){
+            putchar('*');
+        }
+        putchar('\n');
+    }
+	return;
+}
+-----------------------------------------------------------------------------------------------------------
+// Exercício 24
+#include <stdio.h>
+
+void triangulo(int num);
+
+main(){
+    int num;
+    printf("Digite a altura do triangulo: ");
+    scanf("%d", &num);
+    triangulo(num);
+}
+
+void triangulo(int num){
+    int i, j, base, k, espaco;
+    for(i = 1; i <= num; i++){
+        espaco = num - i;
+        for(j = 1; j <= espaco ; j++){
+            putchar(' ');
+        }
+        base = 2 * (i - 1);
+        putchar('*');
+        for(k = 1; k <= base; k++){
+            putchar('*');
+        }
+        putchar('\n');
+    }
+}
