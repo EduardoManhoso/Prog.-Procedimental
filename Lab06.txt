@@ -1,0 +1,536 @@
+// Exercício 01
+#include <stdio.h>
+#define IND 6
+
+void valor(int A[IND]);
+
+main(){
+    int A[IND] = {1, 0, 5, -2, -5, 7};
+    int i;
+    int soma = A[0] + A[1] + A[5];
+    printf("soma = %d\n", soma);
+    A[4] = 100;
+    valor(A);
+}
+
+void valor(int A[IND]){
+    for(int i = 0; i < IND; i++)
+        printf("%3d\n", A[i]);
+	return;
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 02
+#include <stdio.h>
+#include <stdlib.h>
+#define IND 8
+
+void soma(int vet[], int px, int py);
+
+    main()
+{
+    int vet[IND];
+    int i;
+    int px = rand() % IND, py = rand() % IND;
+    for(i = 0; i < IND; i++){
+        printf("Digite um valor inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    soma(vet, px, py);
+}
+
+void soma(int vet[], int px, int py){
+    int s = vet[px] + vet[py];
+    printf("A soma da posicao %d e %d e %d.", px, py, s);
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 03
+#include <stdio.h>
+#define IND 6
+
+main(){
+    int valor[IND];
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um valor inteiro: ");
+        scanf("%d", &valor[i]);
+    }
+    for(i = i - 1; i >= 0; i--)
+        printf("%d\n", valor[i]);
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 04
+#include <stdio.h>
+#define IND 5
+
+main(){
+    int valor[IND];
+    int maior, menor, pmaior, pmenor;
+    for(int i = 0; i < IND; i++){
+        printf("Digite um valor inteiro: ");
+        scanf("%d", &valor[i]);
+        if(i == 0){
+            menor = valor[i];
+            maior = valor[i];
+        }else if(valor[i] < menor){
+            menor = valor[i];
+            pmenor = i;
+        }else if(valor[i] > maior){
+            maior = valor[i];
+            pmaior = i;
+        }
+    }
+    printf("O maior valor e %d, na posicao %d. O menor valor e %d, naposicao %d", maior, pmaior, menor, pmenor);
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 05
+#include <stdio.h>
+#define IND 50
+
+main(){
+   int vet[IND];
+   for(int i = 0; i < IND; i++){
+    vet[i] = (i + 5 * i) % (i + 1);
+    printf("%2d\n", vet[i]);
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 06
+#include <stdio.h>
+#define IND 10
+
+void primo(int vet[]);
+
+main(){
+    int vet[IND];
+    for(int i = 0; i < IND; i++){
+        printf("Digite um valor inteiro: ");
+        scanf("%d", &vet[i]);
+   }
+   primo(vet);
+}
+
+void primo(int vet[]){
+    int i, j;
+    int primo;
+    for(i = 0; i < IND; i++){
+        primo = 1;
+        if(vet[i] == 2 || vet[i] == 3){
+            primo = 1;
+        }else if(vet[i] % 2 == 0 || vet[i] % 3 == 0){
+            primo = 0;
+        }else{
+            for(j = 3; j < vet[i]; j += 2){
+                if(vet[i] % j == 0){
+                    primo = 0;
+                    break;
+                }
+            }
+        }
+        if(primo){
+            printf("%d e primo, e esta na posicao %d\n", vet[i], i);
+        }
+    }
+    return;
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 07
+#include <stdio.h>
+#define IND 6
+
+void par(int vet[]);
+
+void impar(int vet[]);
+
+main(){
+    int vet[IND];
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um valor inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    printf("Os numeros pares: ");
+    par(vet);
+    printf("Os numeros impares: ");
+    impar(vet);
+}
+
+void par(int vet[]){
+    int num, soma = 0;
+    int i;
+    for(i = 0; i < IND; i++){
+        if(vet[i] % 2 == 0){
+            printf("%d ", vet[i]);
+            soma += vet[i];
+        }
+    }
+    printf("\nsoma par = %d\n", soma);
+    return;
+}
+
+void impar(int vet[])
+{
+    int num, soma = 0;
+    int i;
+    for (i = 0; i < IND; i++){
+        if (vet[i] % 2 != 0){
+            printf("%d ", vet[i]);
+            soma += vet[i];
+        }
+    }
+    printf("\nsoma impar = %d\n", soma);
+    return;
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 08
+#include <stdio.h>
+#define IND 10
+
+main(){
+    int vet[IND], valor = 0, controle;
+    int i, j, k;
+    for(i = 0; i < IND; i++){
+        controle = 1;
+        printf("Digite um valor: ");
+        scanf("%d", &valor);
+        if(i == 0){
+            vet[i] = valor;
+        }else{
+            for(j = i - 1; j >= 0; j--){
+                if(valor == vet[j]){
+                    controle = 0;
+                }
+            }
+        }
+        if(controle){
+            vet[i] = valor;
+        }else{
+            i--;
+            printf("Valor repetido!\n");
+        }
+    }
+    printf("\n Os numeros do vetor sao ");
+    for (k = 0; k < IND; k++){
+        printf("%d ", vet[k]);
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 01
+#include <stdio.h>
+#define IND 4
+
+main(){
+    int matriz[IND][IND], maior10 = 0;
+    int i, j;
+    for(i = 0; i < IND; i++){
+        for(j = 0; j < IND; j++){
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &matriz[i][j]);
+            if(matriz[i][j] > 10)
+                maior10++;
+        }
+    }
+    printf("Essa matriz tem %d valores mairos que 10.", maior10);
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 02
+#include <stdio.h>
+#define IND 5
+
+main(){
+    int matriz[IND][IND];
+    for(int i = 0; i < IND; i++){
+        for(int j = 0; j < IND; j++){
+            if(i == j){
+                matriz[i][j] = 1;
+            }else{
+                matriz[i][j] = 0;
+            }
+        }
+    }
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            printf("%d ", matriz[i][j]);
+            if(j == (IND - 1))
+                putchar('\n');
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 03
+#include <stdio.h>
+#define IND 4
+
+main(){
+    int matriz[IND][IND], maior;
+    for(int i = 0; i < IND; i++){
+        for(int j = 0; j < IND; j++){
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &matriz[i][j]);
+            if(i == 0 && j == 0){
+                maior = matriz[i][j];
+            }else if (matriz[i][j] > maior){
+                maior = matriz[i][j];
+            }
+        }
+    }
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            if(matriz[i][j] == maior){
+                printf("O valor buscado esta na linha %d e coluda %d.", i, j);
+                break;
+            }
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 04
+#include <stdio.h>
+#define IND 5
+
+main(){
+    int matriz[IND][IND], valor, k = 1;
+    for(int i = 0; i < IND; i++){
+        for(int j = 0; j < IND; j++){
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+    printf("Digite um valor a ser buscado na matriz: ");
+    scanf("%d", &valor);
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            if(matriz[i][j] == valor){
+                printf("O valor buscado esta na linha %d e coluda %d.", i, j);
+                k = 0;
+                break;
+            }
+        }
+    }
+    if(k)
+        printf("Valor nao encontrado!");
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 05
+#include <stdio.h>
+#define IND 10
+
+main(){
+    int matriz[IND][IND];
+    for(int i = 0; i < IND; i++){
+        for(int j = 0; j < IND; j++){
+            if(i < j){
+                matriz[i][j] = (2 * i) + (7 * j) - 2;
+            }
+            else if( i == j){
+                matriz[i][j] = (3 * i * i) - 1;
+            }
+            else{
+                matriz[i][j] = (4 * i * i * i) - (5 * j * j) + 1;
+            }
+        }
+    }
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            printf("%4d ", matriz[i][j]);
+            if(j == (IND - 1))
+                putchar('\n');
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 06
+#include <stdio.h>
+#define IND 4
+
+main(){
+    int matriz[IND][IND];
+    for(int i = 0; i < IND; i++){
+        for(int j = 0; j < IND; j++){
+            printf("Digite um valor inteiro entre 1 e 20: ");
+            scanf("%d", &matriz[i][j]);
+            for(int k;;){
+                if(matriz[i][j] > 0 && matriz[i][j] < 21){
+                    break;
+                }
+                else{
+                    printf("Digite um valor inteiro entre 1 e 20: ");
+                    scanf("%d", &matriz[i][j]);
+                }
+            }
+        }
+    }
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            printf("%2d ", matriz[i][j]);
+            if(j == (IND - 1))
+                putchar('\n');
+        }
+    }
+    printf("Matriz triangular inferior: \n");
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            if(j > i){
+                printf(" 0 ");
+            }
+            else{
+                printf("%2d ", matriz[i][j]);
+            }
+            if (j == (IND - 1))
+                putchar('\n');
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 07
+#include <stdio.h>
+#include <stdlib.h>
+#define IND 5
+
+main(){
+    int matriz[IND][IND], valor, controle;
+    int i, j;
+    for(int i = 0; i < IND; i++){
+        for( j = 0; j < IND; j++){
+            controle = 1;
+            if(i == 0 && j == 0){
+                matriz[i][j] = rand() % 100;
+            }
+            else {
+                valor = rand() % 100;
+                for (int m = i; m >= 0; m--){
+                    for (int n = j; n >= 0; n--){
+                        if (valor == matriz[m][n]){
+                            controle = 0;
+                        }
+                    }
+                }
+                if(controle){
+                    matriz[i][j] = valor;
+                }else{
+                    j--;
+                }
+            }
+        }
+    }
+    for (int k = 0; k < IND; k++){
+        for (int l = 0; l < IND; l++){
+            printf("%2d ", matriz[k][l]);
+            if(l == (IND - 1))
+                putchar('\n');
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+// Exercício 08
+#include <stdio.h>
+#define IND 2
+
+main(){
+    int matriz1[IND][IND], matriz2[IND][IND], matriz3[IND][IND], controle, constante;
+    char op;
+    printf("Matriz 1:\n");
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+    printf("Matriz 2:\n");
+    for (int i = 0; i < IND; i++){
+        for (int j = 0; j < IND; j++){
+            printf("Digite um valor inteiro: ");
+            scanf("%d", &matriz2[i][j]);
+        }
+    }
+    printf("Escolhar uma opcao: \na) somar as duas matrizes\nb) subtrair a primeira matriz da segunda\nc) adicionar uma constante as duas matrizes\nd) imprimir as matrize\n");
+    scanf(" %c", &op);
+    switch (op)
+    {
+    case 'A':
+    case 'a':
+        for (int i = 0; i < IND; i++)
+        {
+            for (int j = 0; j < IND; j++)
+            {
+                matriz3[i][j] = matriz1[i][j] + matriz2[i][j];
+            }
+        }
+        controle = 1;
+        break;
+    case 'B':
+    case 'b':
+        for (int i = 0; i < IND; i++)
+        {
+            for (int j = 0; j < IND; j++)
+            {
+                matriz3[i][j] = matriz2[i][j] - matriz1[i][j];
+            }
+        }
+        controle = 1;
+        break;
+    case 'C':
+    case 'c':
+        printf("Digite o valor da constante: ");
+        scanf("%d", &constante);
+        controle = 0;
+        break;
+    case 'D':
+    case 'd':
+        constante = 0;
+        controle = 0;
+        break;
+    }
+    if (controle)
+    {
+        for (int i = 0; i < IND; i++)
+        {
+            for (int j = 0; j < IND; j++)
+            {
+                printf("%3d ", matriz3[i][j]);
+                if (j == IND - 1)
+                {
+                    putchar('\n');
+                }
+            }
+        }
+    }
+    else
+    {
+        printf("Matriz 1:\n");
+        for (int i = 0; i < IND; i++)
+        {
+            for (int j = 0; j < IND; j++)
+            {
+                printf("%3d ", matriz1[i][j] + constante);
+                if (j == IND - 1)
+                {
+                    putchar('\n');
+                }
+            }
+        }
+        putchar('\n');
+        putchar('\n');
+        printf("Matriz 2:\n");
+        for (int i = 0; i < IND; i++)
+        {
+            for (int j = 0; j < IND; j++)
+            {
+                printf("%3d ", matriz2[i][j] + constante);
+                if (j == IND - 1)
+                {
+                    putchar('\n');
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
