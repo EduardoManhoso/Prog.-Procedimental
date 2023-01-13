@@ -1,0 +1,640 @@
+//Exercicio 01
+#include <stdio.h>
+
+main(){
+    int x = 10, *ptr_int;
+    char y = 'A', *ptr_char;
+    float z = 5.5, *ptr_float;
+    ptr_int = &x;
+    ptr_char = &y;
+    ptr_float = &z;
+    printf("Antes\tDepois\n");
+    printf("%d\t%d\n%c\t%c\n%.2f\t%.2f\n", *ptr_int, *ptr_int + 1, *ptr_char, *ptr_char + 1, *ptr_float, *ptr_float - 1);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 02
+#include <stdio.h>
+
+main(){
+    int var1, var2;
+    if(&var1 > &var2){
+        printf("A posicao de memoria da variavel 1(%d) e maior que a variavel 2(%d).", &var1, &var2);
+    }
+    else{
+        printf("A posicao de memoria da variavel 2(%d) e maior que a variavel 1(%d).",&var2, &var1);
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 03
+#include <stdio.h>
+
+main(){
+    int var1, var2;
+    printf("Digite duas numeros inteiros: ");
+    scanf("%d %d", &var1, &var2);
+    if(&var1 > &var2){
+        printf("A posicao de memoria da primeira variavel e maior e tem o valor da vaiavel de %d.", var1);
+    }
+    else{
+        printf("A posicao de memoria da segunda variavel e maior e tem o valor da vaiavel de %d.", var2);
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 04
+#include <stdio.h>
+
+void troca(int a, int b);
+
+main(){
+    int a, b;
+    printf("Digite o valor de A e B: ");
+    scanf("%d %d", &a, &b);
+    troca(a, b);
+}
+
+void troca(int a, int b){
+    int *x = &a, *y = &b, tem = *x;
+    a = *y;
+    b = tem;
+    printf("A = %d, B = %d", a, b);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 05
+#include <stdio.h>
+
+void maior(int a, int b);
+
+main(){
+    int a, b;
+    printf("Digite o valor de A e B: ");
+    scanf("%d %d", &a, &b);
+    maior(a, b);
+}
+
+void maior(int a, int b){
+    int *ptr_a = &a, *ptr_b = &b, tem = *ptr_a;
+    if(a > b){
+        printf("Maior = %d, menor = %d", a, b);
+    }
+    else if(b > a){
+        a = *ptr_b;
+        b = tem;
+        printf("Maior = %d, menor = %d", a, b);
+    }
+    else
+        printf("As duas variaveis sao iguais e vale %d", a);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 06
+#include <stdio.h>
+
+void dobro(int *a, int *b);
+
+main(){
+    int a, b;
+    printf("Digite o valor de A e B: ");
+    scanf("%d %d", &a, &b);
+    dobro(&a, &b);
+}
+
+void dobro(int *a, int *b){
+    *a *= 2;
+    *b *= 2;
+    printf("O dobro de A e %d.\nO dobro de B e %d.", *a, *b);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 07
+#include <stdio.h>
+
+void sete(int *a, int *b);
+
+main(){
+    int a, b;
+    printf("Digite o valor de A e B: ");
+    scanf("%d %d", &a, &b);
+    sete(&a, &b);
+    printf("A = %d, B = %d", a, b);
+}
+
+void sete(int *a, int *b){
+    *a += *b; 
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 08
+#include <stdio.h>
+
+void end(float *vet);
+
+main(){
+    float vet[10];
+    end(vet);
+}
+
+void end(float *vet){
+    for(int i = 0; i < 10; i++)
+        printf("O endereco da posicao %d e %d.\n", i, &vet[i]);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Exercicio 09
+#include <stdio.h>
+
+void end(float vet[][3]);
+
+main(){
+    float vet[3][3];
+    end(vet);
+}
+
+void end(float vet[][3]){
+    for(int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            printf("O endereco da posicao %d e %d\n", i, &vet[i][j]);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 10
+#include <stdio.h>
+
+void dobro(int *vet);
+
+main(){
+    int vet[5];
+    int i;
+    for(i = 0; i < 5; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    dobro(vet);
+}
+
+void dobro(int *vet){
+    for (int i = 0; i < 5; i++)
+        printf("O dobro de %d e %d.\n", *(vet + i), *(vet + i)* 2);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 11
+#include <stdio.h>
+#define IND 5
+
+void pares(int *vet);
+
+main(){
+    int vet[IND];
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    pares(vet);
+}
+
+void pares(int *vet){
+    for (int i = 0; i < IND; i++){
+        if(i == 0)
+            printf("Os seguintes enderecos contem valores pares: \n");
+        if(*(vet + i) % 2 == 0)
+            printf("%d\n", &vet[i]);
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 12
+#include <stdio.h>
+#define IND 3
+
+int ordem(int *vet);
+
+main(){
+    int vet[IND];
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    if(ordem(vet))
+        printf("Todos os valores sao iguais a %d.", vet[--i]);
+    else{
+        printf("Os valores ordenados em ordem: ");
+        for(i = 0; i < IND; i++){
+            printf("%d%c", vet[i], (i == 2) ? '.' : ',');
+        }
+    }
+}
+
+int ordem(int *vet){
+    int maior, menor, menori, maiori;
+    int cont_i = 0;
+    for (int i = 0; i < IND; i++){
+        if(i == 0){
+            maior = vet[i];
+            menor = vet[i];
+            maiori = i;
+            menori = i;
+        }
+        if(vet[i] > maior){
+            maior = vet[i];
+            maiori = i;
+        }
+        else if(vet[i] < menor){
+            menor = vet[i];
+            menori = i;
+        }
+        if(i > 0 && vet[i] == vet[i - 1]){
+            cont_i++;
+        }
+    }
+    for(int i = 0; i < IND; i++){
+        if(i != maiori && i != menori){
+             vet[1] = vet[i];
+            vet[0] = menor;
+            vet[2] = maior;
+        }
+    }
+    if(cont_i == 2)
+        return 1;
+    else
+        return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 13
+#include <stdio.h>
+#define IND 500
+
+int ver(char *str1, char *str2);
+
+main(){
+    char str1[IND], str2[IND];
+    printf("Digite a primeira string: ");
+    gets(str1);
+    fflush(stdin);
+    printf("Digite a segunda string: ");
+    gets(str2);
+    if(ver(str1, str2))
+        printf("As strings sao iguais.");
+    else{
+        printf("As strings sao diferentes.");
+    }
+}
+
+int ver(char *str1, char *str2){
+    while(*str1++ != *str2++)
+        return 0;
+    return 1;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 14
+#include <stdio.h>
+#define IND 10
+
+void preencher(int *vet, int valor);
+
+main(){
+    int vet[IND], valor;
+    printf("Digite um valor para colocar no vetor: ");
+    scanf("%d", &valor);
+    preencher(vet, valor);
+}
+
+void preencher(int *vet, int valor){
+    for(int i = 0; i < IND; i++){
+        *(vet + i) = valor;
+        printf("%d%c ", *(vet + i), (i == IND -1) ? '.' : ',');
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 15
+#include <stdio.h>
+#define IND 5
+
+void vetor(int *vet);
+
+main(){
+    int vet[IND];
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um valor: ");
+        scanf("%d", &vet[i]);
+    }
+    vetor(vet);
+}
+
+void vetor(int *vet){
+    for(int i = 0; i < IND; i++){
+        printf("%d%c ", *(vet + i), (i == IND -1) ? '.' : ',');
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 16
+#include <stdio.h>
+
+main(){
+    int A, *B, **C, ***D;
+    B = &A;
+    C = &B;
+    D = &C;
+    printf("Digite um valor inteiro: ");
+    scanf("%d", &A);
+    printf("O seu dobro vale %d\nO seu triplo vale %d\nO seu quadruplo vale %d", *B * 2, **C * 3, ***D * 4);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 17
+#include <stdio.h>
+
+void fraci(float num, int *inteiro, float *frac);
+
+main(){
+    float num, frac;
+    int inteiro;
+    printf("Digite um numero real: ");
+    scanf("%f", &num);
+    fraci(num, &inteiro, &frac);
+    printf("Parte inteira = %d\nA Parte fracionada = %f", inteiro, frac); 
+}
+
+void fraci(float num, int *inteiro, float *frac){
+    *inteiro = num;
+    *frac = num - *inteiro;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 18
+#include <stdio.h>
+#include <math.h>
+#define PI 3.14159
+
+void calc_esfera(float R, float *area, float *volume);
+
+main(){
+    float R, area, volume;
+    printf("Digite o raio da esfera: ");
+    scanf("%f", &R);
+    calc_esfera(R, &area, &volume);
+    printf("A area da esfera e de %f u.a\nO volume da esfera e dee de %f u.v", area, volume); 
+}
+
+void calc_esfera(float R, float *area, float *volume){
+    *area = 4 * PI * pow(R, 2);
+    *volume = 4 * PI * pow(R, 3) / 3;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 19
+#include <stdio.h>
+#define IND 9
+
+void op(int *vet, int *maior, int *rep);
+
+main(){
+    int vet[IND], maior, rep;
+    int i;
+    for(i = 0; i < IND; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    op(vet, &maior, &rep);
+    printf("O maior valo e o %d e ele apareceu %d vezes", maior, rep); 
+}
+
+void op(int *vet, int *maior, int *rep){
+    int i;
+    for(i = 0; i < IND; i++){
+        if(i == 0){
+            *maior = *(vet);
+            *rep = 1;
+
+        }
+        else if(*maior < *(vet + i)){
+            *maior = *(vet + i);
+            *rep = 1;
+        }
+        else if(*maior == *(vet + i)){
+            *rep+=1;
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 20
+#include <stdio.h>
+
+int negativos(float *vet, int N);
+
+main(){
+    int N;
+    int i;
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &N);
+    float vet[N];
+    for(i = 0; i < N; i++){
+        printf("Digite um numero real: ");
+        scanf("%f", &vet[i]);
+    }
+    printf("Tem %d numeros negativos.", negativos(vet, N));
+
+}
+
+int negativos(float *vet, int N){
+    int neg = 0;
+    int i;
+    for(i = 0; i < N; i++)
+        if(*(vet + i) < 0.0)
+            neg++;
+    return neg;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 21
+#include <stdio.h>
+#define IND 5
+
+main(){
+    int vet[IND] = {4,7,6,5,9}, *ptr;
+    ptr = vet;
+    for(int i = 0; i < IND; i++){
+        *(ptr + i) += 1;
+        printf("%d%c ", vet[i], (i == IND - 1) ? '.' : ',');
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 22
+#include <stdio.h>
+
+int soma_vet(int *vet1, int *vet2, int *vet3, int P, int S);
+
+main(){
+    int P, S;
+    printf("Digite o tamanho do primeiro vetor: ");
+    scanf("%d", &P);
+    int vet1[P], vet3[P];
+    for(int i = 0; i < P; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet1[i]);
+    }
+    printf("\nDigite o tamanho do segundo vetor: ");
+    scanf("%d", &S);
+    int vet2[S];
+    for(int i = 0; i < S; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet2[i]);
+    }
+    if(soma_vet(vet1, vet2, vet3, P, S)){
+        printf("\nA soma do vetor 1 e 2 ficou: ");
+        for(int i = 0; i < P; i++)
+            printf("%d%c ", *(vet3 + i), (i == P - 1) ? '.' : ',');
+    }
+    else 
+        printf("\nOs vetores tem tamanhos diferentes.");
+}
+
+int soma_vet(int *vet1, int *vet2, int *vet3, int P, int S){
+    if(P == S){
+        for(int i = 0; i < P; i++)
+            *(vet3 + i) = *(vet1 + i) + *(vet2 + i);
+            return 1;
+    }
+    else 
+        return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 23
+#include <stdio.h>
+
+void maior(int *vet, int N, int k);
+
+main(){
+    int N, k;
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &N);
+    int vet[N];
+    for(int i = 0; i < N; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    printf("Digite quantos elementos serao colocados por linha: ");
+    scanf("%d", &k);
+    maior(vet, N, k);
+}
+
+void maior(int *vet, int N, int k){
+    int maior, cont = 1;
+    for(int i = 0; i < N; i++){
+        printf("%6d ", *(vet + i));
+        if(k == (i + 1)  / cont){
+            cont++;
+            printf("\n");
+        }
+        if(i == 0)
+            maior = *(vet + i);
+        else if(maior < *(vet + i))
+            maior = *(vet + i);
+    }
+    printf("\nO maior valor e: %d", maior);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 24
+#include <stdio.h>
+#define IND 5
+
+void min_max(int *vet, int *max, int *min);
+
+main(){
+    int vet[IND];
+    int max, min;
+    for(int i = 0; i < IND; i++){
+        printf("Digite um numero inteiro: ");
+        scanf("%d", &vet[i]);
+    }
+    min_max(vet, &max, &min);
+    printf("\nO valor maximo e de %d, e o valor minimo e de %d.", max, min);
+}
+
+void min_max(int *vet, int *max, int *min){
+    for(int i = 0; i < IND; i++){
+        if(i == 0){
+            *max = *(vet + i);
+            *min = *(vet + i);
+        }
+        else if(*max < *(vet + i))
+            *max = *(vet + i);    
+        else if(*min > *(vet + i))
+            *min = *(vet + i);
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 25
+#include <stdio.h>
+
+void nota(float *n1, float *n2);
+void media( float *mediap, float *mediaa, float *n1, float *n2);
+
+main(){
+    float mediap, mediaa, n1, n2;
+    nota(&n1, &n2);
+    media(&mediap, &mediaa, &n1, &n2);
+    printf("A nota na prova 1 foi %.2f e na prova 2 foi %.2f\nA media aritimetica foi %.2f e a ponderada foi %.2f", n1, n2, mediaa, mediap);
+}
+
+void nota(float *n1, float *n2){
+    int p1, p2;
+    printf("Digite o valor da primeira nota: ");
+    scanf("%d", &p1);
+    printf("Digite o valor da segunda nota: ");
+    scanf("%d", &p2);
+    *n1 = p1;
+    *n2 = p2;
+}
+void media(float *mediap, float *mediaa, float *n1, float *n2){
+    *mediaa = (*n1 + *n2) / 2;
+    *mediap = (*n1 + (*n2 * 2)) / 3;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 26
+#include <stdio.h>
+#include <math.h>
+
+int raizes(float A, float B, float C, float *X1, float *X2);
+
+main(){
+    float A, B, C, X1, X2;
+    printf("Digite os valores de A, B e C na forma Ax2+ Bx + C = 0: ");
+    scanf("%f %f %f", &A, &B, &C);
+    if(raizes(A, B, C, &X1, &X2) == 2 ||raizes(A, B, C, &X1, &X2) == 1)
+        printf("A funcao possui %d raiz(es)\nX1 = %f e X2 = %f", raizes(A, B, C, &X1, &X2), X1, X2);
+    else
+        printf("A funcao nao possue raizes.");
+}
+
+int raizes(float A, float B, float C, float *X1, float *X2){
+    int delta;
+    delta = pow(B, 2) - 4 * A * C;
+    if(delta < 0)
+        return 0;
+    else if(delta == 0){
+        *X1 = -B / (2 * A);
+        *X2 = *X1;
+        return 1;
+    }
+    else if(delta > 0){
+        *X1 = (-B + sqrt(delta)) / (2 * A);
+        *X2 = (-B - sqrt(delta)) / (2 * A);
+        return 2;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
