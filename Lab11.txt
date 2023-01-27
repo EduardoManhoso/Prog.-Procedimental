@@ -1,0 +1,218 @@
+// Exercicio 05
+#include <stdio.h>
+#include <stdlib.h>
+
+main(){
+    FILE *arq;
+    char car, var;
+    char nome[100];
+    int cont = 0;
+    printf("Digite o endereco do arquivo: ");
+    gets(nome);
+    if((arq = fopen(nome, "r")) == NULL){
+        printf("Falha ao abrir o arquivo!");
+        exit(1);
+    }
+    printf("Digite o caracter que deseja buscar: ");
+    scanf(" %c", &car);
+    while((var = fgetc(arq)) != EOF){
+        if(var == car)
+            cont++;
+    }
+    fclose(arq);
+    printf("O caracter \"%c\" apareceu %d vezes.", car, cont);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 10
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+main(){
+    FILE *popu, *cidades;
+    char cidade[300], m_cidade[300];
+    char end_op[100], end_gr[100];
+    char *result, num[100];
+    int i, j, maior = 0;
+
+    printf("Digite o endereco do arquivo: ");
+    gets(end_op);
+
+    if((cidades = fopen(end_op, "rb")) == NULL){
+            printf("Falha ao abrir o arquivo!");
+            exit(1);
+    }
+
+    printf("Digite o endereco do novo arquivo: ");
+    gets(end_gr);
+
+    if((popu = fopen(end_gr, "wb")) == NULL){
+        printf("Falha ao abrir o arquivo!");
+        exit(1);
+    }
+
+    
+
+    while(1){
+
+        if((result = fgets(cidade, 300, cidades)) == NULL)
+            printf("Erro na leitura!");
+
+        for(i = 0, j = 0; i < strlen(cidade); i++){
+            if(cidade[i] >= '0' && cidade[i] <= '9')
+                num[j++] = cidade[i];
+        }
+		num[j] = '\0';
+
+        if(maior < atoi(num)){
+            maior = atoi(num);
+            strcpy(m_cidade, cidade);
+        }
+
+        if(feof(cidades))
+            break;
+    }
+
+    if(fputs(m_cidade, popu) != EOF)
+        printf("Acao feita com sucesso!");
+    else
+        printf("Erro de gravacao!");
+
+    fclose(popu);
+    fclose(cidades);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 15
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+main(){
+    FILE *entrada, *saida;
+    int data, idade;
+    int i, j, k;
+    char *result;
+    char pessoa[300], nasc[10], nome[300], anos[200];
+    char end_e[100], end_s[100];
+
+    printf("Digite o endereco do arquivo: ");
+    gets(end_e);
+
+    if((entrada = fopen(end_e, "r")) == NULL)
+    {
+        printf("Falha ao abrir o arquivo!");
+        exit(1);
+    }
+
+    printf("Digite o endereco do arquivo: ");
+    gets(end_s);
+
+    if((saida = fopen(end_s, "w")) == NULL)
+    {
+        printf("Falha ao abrir o arquivo!");
+        exit(1);
+    }
+
+    printf("Digite o ano atual:");
+    scanf("%d", &data);
+
+       while(1){
+
+        if((result = fgets(pessoa, 300, entrada)) == NULL)
+            printf("Erro na leitura!\n");
+
+        for(i = 0, j = 0, k = 0; pessoa[i] != '\n'; i++){
+            if(pessoa[i] >= '0' && pessoa[i] <= '9')
+                nasc[j++] = pessoa[i];
+            else 
+                nome[k++] = pessoa[i];
+        }
+        nasc[j] = '\0';
+        nome[k++] = ' ';
+        nome[k] = '\0';
+
+        if((idade = data - atoi(nasc)) > 18){
+            if(fputs(strcat(nome, strcat(itoa(idade, anos, 10)," \"maior de idade\"\n")), saida) == EOF)
+                printf("Falha na gravacao!\n");
+        }
+        else if((idade = data - atoi(nasc)) < 18){
+            if(fputs(strcat(nome, strcat(itoa(idade, anos, 10)," \"menor de idade\"\n")), saida) == EOF)
+                printf("Falha na gravacao!\n");
+        }
+        else{
+            if(fputs(strcat(nome, strcat(itoa(idade, anos, 10)," \"entrando na maior idade\"\n")), saida) == EOF)
+                printf("Falha na gravacao!\n");
+        }
+
+        if(feof(entrada))
+            break;
+    }
+
+    fclose(entrada);
+    fclose(saida);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Exercicio 20
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+main(){
+    FILE *arq;
+    int alunos;
+    char nome[40];
+    char nota[10];
+    int i, j;
+
+    arq = fopen("notas.txt", "w");
+    if(arq == NULL){
+        printf("Erro na aberturado arquivo!");
+        exit(1);
+    }
+
+    printf("Digite o numero de alunos: ");
+    scanf("%d", &alunos);
+
+    for(i = 0; i < alunos; i++){
+        printf("\nDigite o nome do aluno: ");
+        fflush(stdin);
+        fgets(nome, 41, stdin);
+        for(j = strlen(nome) - 1; j < 41; j++){
+            if(j == 40)
+                nome[j] = '\0';
+            else
+                nome[j] = ' ';
+        }
+        printf("Digite a nota do aluno: ");
+        fflush(stdin);
+        fgets(nota, 10, stdin);
+        fputs(nome, arq);
+        fputs(nota, arq);
+    }
+
+    fclose(arq);
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
